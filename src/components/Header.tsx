@@ -3,10 +3,10 @@ import { ThemeContext } from './ThemeProvider';
 import styled from 'styled-components';
 
 const headerStyles = `
-  display: flex;
-  height: 4rem;
-  align-items: center;
-  padding: 1rem;
+    display: flex;
+    height: 4rem;
+    align-items: center;
+    padding: 1rem;
 `;
 
 const DarkHeader = styled.header`
