@@ -1,16 +1,16 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { FilterOption } from 'components';
+import Base from './Base';
 
 export default {
-  title: 'Components/FilterOption',
-  component: FilterOption,
+  title: 'Components/Filters/Base',
+  component: Base,
   parameters: {
     layout: 'centered',
   },
-} as ComponentMeta<typeof FilterOption>;
+} as ComponentMeta<typeof Base>;
 
-const Template: ComponentStory<typeof FilterOption> = (args) =>
-  <FilterOption {...args} />;
+const Template: ComponentStory<typeof Base> = (args) =>
+  <Base {...args} />;
 
 export const Component = Template.bind({});
 Component.args = {
