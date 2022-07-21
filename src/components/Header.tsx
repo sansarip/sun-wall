@@ -1,19 +1,41 @@
-import styled from "styled-components";
+import { Switch } from "@blueprintjs/core";
+import { useContext } from "react";
+import { darkColor, lightColor } from "src/colors";
+import { setInLocalStorage } from "src/utils";
+import styled, { ThemeContext } from "styled-components";
 
 const Layout = styled.header`
   display: flex;
   align-items: center;
   height: 10vh;
-  
+  justify-content: space-between;
+
   h1 {
     margin: 0px;
   }
 `;
 
-const Header: React.FC = () => (
-  <Layout>
-    <h1>Sun Wall</h1>
-  </Layout>
-);
+const Header: React.FC = () => {
+  const { color, setColor } = useContext(ThemeContext);
+  const persistColor = (color: string) => {
+    setInLocalStorage("color", color);
+    setColor(color);
+  }
+
+  return (
+    <Layout>
+      <h1>Sun Wall</h1>
+      <Switch
+        checked={color === darkColor}
+        innerLabel="🌞"
+        innerLabelChecked="🌜"
+        large={true}
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+          event.target.checked ? persistColor(darkColor) : persistColor(lightColor);
+        }}
+      />
+    </Layout>
+  );
+};
 
 export default Header;

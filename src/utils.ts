@@ -21,3 +21,10 @@ export const monthNames = [
   "November",
   "December",
 ];
+const namespace = "sun-wall";
+export const setInLocalStorage = (key: string, value: string) => {
+  localStorage.setItem(`${namespace}/${key}`, value);
+}
+export const getFromLocalStorage = (key: string) => {
+  return localStorage.getItem(`${namespace}/${key}`);
+}
