@@ -36,4 +36,12 @@ const withThemeProvider = (Story, context) => {
   );
 };
 
-export const decorators = [withThemeProvider];
+const withPadding = (Story, context) => {
+  return (
+    <div style={{padding: "1rem"}}>
+      <Story {...context} />
+    </div>
+  );
+}
+
+export const decorators = [withPadding, withThemeProvider];
