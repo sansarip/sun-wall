@@ -1,32 +1,19 @@
-import { Colors } from '@blueprintjs/core'
-import { ThemeContext } from './ThemeProvider';
-import styled from 'styled-components';
+import styled from "styled-components";
 
-const headerStyles = `
-    display: flex;
-    height: 4rem;
-    align-items: center;
-    padding: 1rem;
+const Layout = styled.header`
+  display: flex;
+  align-items: center;
+  height: 10vh;
+  
+  h1 {
+    margin: 0px;
+  }
 `;
-
-const DarkHeader = styled.header`
-  ${headerStyles}
-  background-color: ${Colors.DARK_GRAY4};
-`;
-
-const LightHeader = styled.header`
-  ${headerStyles}
-  background-color: ${Colors.LIGHT_GRAY4};
-`;
-
-const Title = <h1 className='bp4-text-large'>🌞 Sun Wall</h1>;
 
 const Header: React.FC = () => (
-    <ThemeContext.Consumer>
-        {({ isDark }) => (
-            isDark ? <DarkHeader>{Title}</DarkHeader> : <LightHeader>{Title}</LightHeader>
-        )}
-    </ThemeContext.Consumer>
-)
+  <Layout>
+    <h1>Sun Wall</h1>
+  </Layout>
+);
 
 export default Header;

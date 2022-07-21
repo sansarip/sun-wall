@@ -1,29 +1,51 @@
-
 import { useState } from "react";
-import Base, { BaseProps } from "./Base";
+import Base, { Props } from "./Base";
 import { DatePicker } from "@blueprintjs/datetime";
-import { format, getDate, getMonth, getYear, subDays } from 'date-fns'
-import { useCallback } from "react";
+import { format, getDate, getMonth, getYear } from "date-fns";
 import { noop } from "lodash";
+import { getYesterday } from "src/utils";
 
+type CalendarProps = Pick<Props, "onClear"> & {
+  defaultDate?: Date;
+  disabled?: boolean;
+  onApply?: (year: number, month: number, day: number) => void;
+};
 
-type CalendarProps = Pick<BaseProps, "onApply" | "onClear">;
+const earliestWikipediaArticleDate = new Date(2001, 0, 15);
 
-const Calendar: React.FC<CalendarProps> = ({ onApply = noop }) => {
-    const yesterday = subDays(new Date(), 1);
-    const [date, setDate] = useState<Date>(yesterday);
-    const [appliedDate, setAppliedDate] = useState<Date>(date);
-    const label = format(appliedDate, 'MMM dd, yyyy');
-    const applyDate = useCallback(() => {
-        setAppliedDate(date);
-        // Incrementing zero-based month
-        onApply(getYear(date), getMonth(date) + 1, getDate(date));
-    }, [date, onApply]);
-    const resetDate = () => setDate(yesterday);
+const Calendar: React.FC<CalendarProps> = ({
+  disabled,
+  defaultDate: _defaultDate,
+  onApply = noop,
+}) => {
+  const maxDate = getYesterday();
+  const defaultDate =
+    _defaultDate && _defaultDate <= maxDate ? _defaultDate : maxDate;
+  const [date, setDate] = useState<Date>(maxDate);
+  const [appliedDate, setAppliedDate] = useState<Date>(date);
+  const label = format(appliedDate, "MMM dd, yyyy");
+  const applyDate = () => {
+    setAppliedDate(date);
+    onApply(getYear(date), getMonth(date), getDate(date));
+  };
+  const resetDate = () => setDate(defaultDate);
 
-    return <Base label={label} onApply={applyDate} onClose={resetDate}>
-        <DatePicker value={date} onChange={setDate} shortcuts />
+  return (
+    <Base
+      disabled={disabled}
+      label={label}
+      onApply={applyDate}
+      onClose={resetDate}
+    >
+      <DatePicker
+        value={date}
+        minDate={earliestWikipediaArticleDate}
+        maxDate={maxDate}
+        onChange={setDate}
+        shortcuts
+      />
     </Base>
-}
+  );
+};
 
 export default Calendar;

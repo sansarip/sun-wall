@@ -1,5 +1,5 @@
-import Base from "./Base";
-import Calendar from "./Calendar";
+import _Base from "./Base";
+import _Calendar from "./Calendar";
 
-export const FilterBase = Base;
-export const CalendarFilter = Calendar;
+export const Base = _Base;
+export const Calendar = _Calendar;
