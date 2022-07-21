@@ -1,5 +1,7 @@
 import "../src/index.css";
-import { ThemeProvider } from "../src/components";
+import styled, { ThemeProvider } from "styled-components";
+import { darkColor, lightColor } from "../src/colors";
+import { noop } from "lodash";
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -28,20 +30,28 @@ export const globalTypes = {
   },
 };
 
+const Background = styled.div`
+  background-color: ${(props) => props.theme.color};
+`;
+
 const withThemeProvider = (Story, context) => {
+  const isDark = context.globals.theme === "dark";
+  const color = isDark ? darkColor : lightColor;
   return (
-    <ThemeProvider theme={{isDark: context.globals.theme == "dark"}}>
-      <Story {...context} />
+    <ThemeProvider theme={{ color, setColor: noop }}>
+      <Background className={isDark ? "bp4-dark" : "bp4-light"}>
+        <Story {...context} />
+      </Background>
     </ThemeProvider>
   );
 };
 
 const withPadding = (Story, context) => {
   return (
-    <div style={{padding: "1rem"}}>
+    <div style={{ padding: "1rem" }}>
       <Story {...context} />
     </div>
   );
-}
+};
 
 export const decorators = [withPadding, withThemeProvider];
