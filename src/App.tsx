@@ -1,6 +1,5 @@
-import { Colors } from "@blueprintjs/core";
 import { useMemo, useState } from "react";
-import styled, { ThemeProvider, ThemeConsumer } from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 import { darkColor } from "./colors";
 import { Header } from "./components";
 import { Articles } from "./pages";
@@ -23,18 +22,12 @@ const App: React.FC = () => {
   const theme = useMemo(() => ({ color, setColor }), [color]);
   return (
     <ThemeProvider theme={theme}>
-      <ThemeConsumer>
-        {(theme) => (
-          <Layout
-            className={theme.color === darkColor ? "bp4-dark" : "bp4-light"}
-          >
-            <Content>
-              <Header />
-              <Articles />
-            </Content>
-          </Layout>
-        )}
-      </ThemeConsumer>
+      <Layout className={color === darkColor ? "bp4-dark" : "bp4-light"}>
+        <Content>
+          <Header />
+          <Articles />
+        </Content>
+      </Layout>
     </ThemeProvider>
   );
 };
