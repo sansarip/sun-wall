@@ -26,7 +26,7 @@ const Card = styled(_Card)`
   }
 `;
 
-const Preview: React.FC<Article.Preview & { style?: React.CSSProperties }> = ({
+export const Preview: React.FC<Article.Preview & { style?: React.CSSProperties }> = ({
   article,
   rank,
   style,

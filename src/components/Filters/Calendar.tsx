@@ -13,7 +13,7 @@ type CalendarProps = Pick<Props, "onClear"> & {
 
 const earliestWikipediaArticleDate = new Date(2001, 0, 15);
 
-const Calendar: React.FC<CalendarProps> = ({
+export const Calendar: React.FC<CalendarProps> = ({
   disabled,
   defaultDate: _defaultDate,
   onApply = noop,

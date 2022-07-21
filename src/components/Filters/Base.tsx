@@ -30,7 +30,7 @@ const PopoverContent = styled.div`
   }
 `;
 
-const Base: React.FC<Props> = ({
+export const Base: React.FC<Props> = ({
   children,
   disabled,
   label,

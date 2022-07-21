@@ -2,21 +2,21 @@ import { Button, MenuItem } from "@blueprintjs/core";
 import { Select2 } from "@blueprintjs/select";
 
 export type SelectableNumber = 25 | 50 | 75 | 100 | 200;
-type Item = { number: SelectableNumber };
+type Option = { number: SelectableNumber };
 type Props = {
   disabled?: boolean;
   onSelect: (number: SelectableNumber) => void;
   value: SelectableNumber;
 };
 export const selectableNumbers: SelectableNumber[] = [25, 50, 75, 100, 200];
-const items: Item[] = selectableNumbers.map((number) => ({ number }));
+const items: Option[] = selectableNumbers.map((number) => ({ number }));
 
-const Select = Select2.ofType<Item>();
-const Item: React.FC<Item> = ({ number }, { handleClick }) => {
+const Select = Select2.ofType<Option>();
+const Item: React.FC<Option> = ({ number }, { handleClick }) => {
   return <MenuItem text={number} key={number} onClick={handleClick} />;
 };
 
-const NumResultsSelect: React.FC<Props> = ({ disabled, onSelect, value }) => {
+export const NumResultsSelect: React.FC<Props> = ({ disabled, onSelect, value }) => {
   return (
     <Select
       disabled={disabled}

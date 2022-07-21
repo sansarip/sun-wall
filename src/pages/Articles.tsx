@@ -1,8 +1,8 @@
-import { Colors, Intent, NonIdealState, Spinner } from "@blueprintjs/core";
+import { Colors, NonIdealState, Spinner } from "@blueprintjs/core";
 import { useMachine } from "@xstate/react";
 import machine from "./Articles.fsm";
 import {
-  Articles as _Articles,
+  Articles as _Articles,    
   Filters,
   NumResultsSelect,
 } from "src/components";
@@ -24,14 +24,14 @@ const Options = styled.div`
   align-items: center;
   display: flex;
   gap: 1rem;
-  height: 6vh;
+  height: 8vh;
   padding: 0px 0.25rem;
   width: 100%;
 `;
 
 const Content = styled.div`
   width: 100%;
-  height: 84vh;
+  height: 82vh;
 
   .bp4-non-ideal-state {
     padding-top: 3rem;
@@ -47,7 +47,7 @@ const List = styled(FixedSizeList)`
   border-top: 1px solid ${Colors.LIGHT_GRAY2};
 `;
 
-const Articles: React.FC = () => {
+export const Articles: React.FC = () => {
   const [state, send] = useMachine(machine);
   const [numArticles, setNumArticles] = useState<SelectableNumber>(100);
   const articles = state.context.articles as Article.Preview[];

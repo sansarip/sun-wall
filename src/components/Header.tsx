@@ -15,7 +15,7 @@ const Layout = styled.header`
   }
 `;
 
-const Header: React.FC = () => {
+export const Header: React.FC = () => {
   const { color, setColor } = useContext(ThemeContext);
   const persistColor = (color: string) => {
     setInLocalStorage("color", color);
