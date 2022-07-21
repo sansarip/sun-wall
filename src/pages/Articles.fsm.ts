@@ -39,21 +39,7 @@ const machine =
     fetching: {
       // @ts-ignore
       invoke: {
-        src: (_context, event) => async () => {
-          const [year, month, day] =
-            (event as FetchArticlesEvent).yearMonthDay ||
-            dateToYearMonthDay(getYesterday());
-          const response = await fetch(
-            `https://wikimedia.org/api/rest_v1/metrics/pageviews/top/en.wikipedia/all-access/${year}/${padWithZero(
-              month + 1
-            )}/${padWithZero(day)}`
-          );
-          if (!response.ok && response.status !== 404) {
-            throw new Error(response.statusText);
-          }
-          const json = await response.json();
-          return json?.items?.[0]?.articles ?? [];
-        },
+        src: fetchArticles,
         onDone: [
           {
             actions: assign({ articles: (_context, event) => event.data }),
