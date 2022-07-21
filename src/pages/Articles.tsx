@@ -93,7 +93,7 @@ const Articles: React.FC = () => {
         <Filters.Calendar disabled={isLoading} onApply={applyDate} />
         <NumResultsSelect
           disabled={isLoading}
-          onSelect={(number) => setNumArticles(number)}
+          onSelect={(number: SelectableNumber) => setNumArticles(number)}
           value={numArticles}
         />
       </Options>
