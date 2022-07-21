@@ -42,7 +42,6 @@
   },
   "eslintConfig": {
     "extends": [
-      "prettier",
       "react-app",
       "react-app/jest",
       "plugin:cypress/recommended"
