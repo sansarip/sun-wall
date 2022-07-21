@@ -5,7 +5,7 @@ export default {
   title: 'Components/Filters/Base',
   component: Base,
   parameters: {
-    layout: 'centered',
+    layout: 'fullscreen',
   },
 } as ComponentMeta<typeof Base>;
 

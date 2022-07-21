@@ -5,7 +5,7 @@ export default {
   title: 'Components/Filters/Calendar',
   component: Calendar,
   parameters: {
-    layout: 'centered',
+    layout: 'fullscreen',
   },
 } as ComponentMeta<typeof Calendar>;
 
