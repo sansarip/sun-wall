@@ -1,3 +1,7 @@
+# Sun Wall
+
+This is a demo project with a generated name 🌞
+
 # Local Dev
 
 Before you begin, you should run `yarn install` 📦️⬇️
