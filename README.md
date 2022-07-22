@@ -1,6 +1,9 @@
 # Sun Wall
 
-This is a demo project with a generated name 🌞
+This is a demo project with a generated name 🌞\
+It simply fetches the most viewed wikipedia pages for a specified date.
+
+The app is live here 👉 [https://sun-wall.vercel.app/](https://sun-wall.vercel.app/)
 
 # Remote Dev
 
@@ -42,3 +45,7 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 Runs the storybook app, demonstrating the various components in the project.\
 Open [http://localhost:6006](http://localhost:6006) to view it in the browser.
+
+# Notes
+
+This project uses [XState](https://xstate.js.org/docs/) and the [XState VS Code extension](https://marketplace.visualstudio.com/items?itemName=statelyai.stately-vscode) will allow you to visualize the state machine located [here](https://github.com/sansarip/sun-wall/blob/main/src/pages/Articles.fsm.ts#L42).
