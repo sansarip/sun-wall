@@ -20,12 +20,12 @@ You will also see any lint errors in the console.
 
 ### `yarn cy:open`
 
-Launches the Cypress test runner in the interactive watch mode.\
-You'll be able to select the component tests in the Cypress GUI.
+Launches the Cypress test runner GUI in interactive watch mode.\
+The component tests should be selectable.
 
 ### `yarn cy:run`
 
-Runs the component tests in headless mode.
+Runs the Cypress component tests in headless mode.
 
 ### `yarn build`
 
