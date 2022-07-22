@@ -8,6 +8,7 @@ import { FixedSizeList } from "react-window";
 import AutoSizer from "react-virtualized-auto-sizer";
 import { useState } from "react";
 import { SelectableNumber } from "src/components/Options";
+import { getCode } from "country-list";
 
 const Main = styled.main`
   align-items: center;
@@ -47,11 +48,13 @@ const List = styled(FixedSizeList)`
 export const Articles: React.FC = () => {
   const [state, send] = useMachine(machine);
   const [numArticles, setNumArticles] = useState<SelectableNumber>(100);
-  const articles = state.context.articles as Article.Preview[];
+  const {articles, countryName} = state.context;
   const isLoading = state.matches("fetching");
 
   const applyDate = (year: number, month: number, day: number) =>
     send({ type: "FETCH", yearMonthDay: [year, month, day] });
+  const selectCountry = (countryName: string) =>
+    send({ type: "FETCH", countryName: countryName });
 
   let content;
   if (isLoading) {
@@ -85,6 +88,11 @@ export const Articles: React.FC = () => {
     <Main>
       <OptionsContainer>
         <Options.Calendar disabled={isLoading} onApply={applyDate} />
+        <Options.Countries
+          disabled={isLoading}
+          onSelect={selectCountry}
+          value={countryName || "Country"}
+        />
         <Options.NumResults
           disabled={isLoading}
           onSelect={(number: SelectableNumber) => setNumArticles(number)}

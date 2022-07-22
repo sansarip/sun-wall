@@ -1,48 +1,75 @@
-import { Card as _Card, Elevation } from "@blueprintjs/core";
+import { Card, Colors, Elevation } from "@blueprintjs/core";
 import React from "react";
+import { DARK } from "src/colors";
 import styled from "styled-components";
 
-const Card = styled(_Card)`
+const Link = styled.a`
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+  }
+
   article {
     align-items: center;
+    color: ${(props) =>
+        props.theme.color === DARK
+          ? Colors.LIGHT_GRAY5
+          : Colors.DARK_GRAY1};
+
     display: flex;
-    flex-wrap: wrap;
     gap: 1.5rem;
     justify-content: space-evenly;
+    text-decoration: none;
 
     h1 {
-      margin-top: 0rem;
-      width: 12rem;
       font-size: 1.125rem;
+      margin-top: 0rem;
+      overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-      overflow: hidden;
     }
 
     .article-preview_stats {
       display: flex;
       flex-direction: column;
     }
+
+    @media only screen and (max-width: 600px) {
+        h1 {
+            max-width: 12rem;
+        }
+    }
+
+    @media only screen and (min-width: 601px) {
+        h1 {
+            max-width: 18rem;
+        }
+    }
+    
   }
 `;
 
-export const Preview: React.FC<Article.Preview & { style?: React.CSSProperties }> = ({
-  article,
-  rank,
-  style,
-  views,
-}) => {
-  const title = article?.replace(/_/g, " ");
+export const Preview: React.FC<
+  Article.Preview & { style?: React.CSSProperties }
+> = (props) => {
+  const title = props.article?.replace(/_/g, " ");
   return (
-    <Card style={style} interactive={true} elevation={Elevation.ONE}>
-      <article>
-        <h1 title={title}>{title}</h1>
-        <div className="article-preview_stats">
-          <p>Views: {rank}</p>
-          <p>Rank: {views}</p>
-        </div>
-      </article>
-    </Card>
+    <Link
+      href={`https://en.wikipedia.org/wiki/${props.article}`}
+      rel="noreferrer"
+      target="_blank"
+    >
+      <Card style={props.style} interactive={true} elevation={Elevation.ONE}>
+        <article>
+          <h1 title={title}>{title}</h1>
+          <div className="article-preview_stats">
+            <p>Views: {props.views || props.views_ceil}</p>
+            <p>Rank: {props.rank}</p>
+          </div>
+        </article>
+      </Card>
+    </Link>
   );
 };
 
