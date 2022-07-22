@@ -16,6 +16,6 @@ describe('Preview', () => {
         // then
         cy.findByRole('heading', { name: article.article }).should('be.visible');
         cy.get('p').contains(article.rank).should('be.visible');
-        cy.get('p').contains(article.views).should('be.visible');
+        cy.get('p').contains("" + article.views).should('be.visible');
     })
 })
