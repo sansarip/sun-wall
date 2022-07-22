@@ -17,11 +17,17 @@ export type FetchArticlesEvent = {
 };
 
 const fetchArticles: FetchArticles =
-  (_context, { yearMonthDay, countryName }) =>
+  (context, { yearMonthDay, countryName: givenCountryName }) =>
   async () => {
+    const resetCountry = givenCountryName === "";
+    const countryName = resetCountry
+      ? givenCountryName
+      : givenCountryName || context.countryName;
     const [year, month, day] =
       yearMonthDay || dateToYearMonthDay(getYesterday());
-    const dateParams = [year, padWithZero(month + 1), padWithZero(day)].join("/");
+    const dateParams = [year, padWithZero(month + 1), padWithZero(day)].join(
+      "/"
+    );
     const apiUrl = countryName
       ? `https://wikimedia.org/api/rest_v1/metrics/pageviews/top-per-country/${getCode(
           countryName
@@ -34,7 +40,7 @@ const fetchArticles: FetchArticles =
     const json = await response.json();
     return {
       articles: json?.items?.[0]?.articles ?? [],
-      countryName,
+      ...(countryName || resetCountry ? { countryName } : {}),
     };
   };
 
