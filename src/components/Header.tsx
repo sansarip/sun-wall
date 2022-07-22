@@ -1,6 +1,6 @@
 import { Switch } from "@blueprintjs/core";
 import { useContext } from "react";
-import { darkColor, lightColor } from "src/colors";
+import { DARK, LIGHT } from "src/colors";
 import { setInLocalStorage } from "src/utils";
 import styled, { ThemeContext } from "styled-components";
 
@@ -26,12 +26,12 @@ export const Header: React.FC = () => {
     <Layout>
       <h1>Sun Wall</h1>
       <Switch
-        checked={color === darkColor}
+        checked={color === DARK}
         innerLabel="🌞"
         innerLabelChecked="🌜"
         large={true}
         onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-          event.target.checked ? persistColor(darkColor) : persistColor(lightColor);
+          event.target.checked ? persistColor(DARK) : persistColor(LIGHT);
         }}
       />
     </Layout>

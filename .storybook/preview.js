@@ -1,6 +1,6 @@
 import "../src/index.css";
 import styled, { ThemeProvider } from "styled-components";
-import { darkColor, lightColor } from "../src/colors";
+import { DARK, LIGHT } from "../src/colors";
 import { noop } from "lodash";
 
 export const parameters = {
@@ -36,7 +36,7 @@ const Background = styled.div`
 
 const withThemeProvider = (Story, context) => {
   const isDark = context.globals.theme === "dark";
-  const color = isDark ? darkColor : lightColor;
+  const color = isDark ? DARK : LIGHT;
   return (
     <ThemeProvider theme={{ color, setColor: noop }}>
       <Background className={isDark ? "bp4-dark" : "bp4-light"}>
