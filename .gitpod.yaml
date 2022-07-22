@@ -1,0 +1,14 @@
+image:
+  file: .gitpod.dockerfile
+tasks:
+  - init: npm install --global yarn && yarn install
+vscode:
+  extensions:
+    - statelyai.stately-vscode
+github:
+  prebuilds:
+    main: true
+    branches: false
+    pullRequests: true
+    addCheck: true
+    addComment: true
