@@ -35,7 +35,7 @@ const fetchArticles: FetchArticles =
     const json = await response.json();
     return {
       articles: json?.items?.[0]?.articles ?? [],
-      ...(countryName ? { countryName } : {}),
+      countryName,
     };
   };
 

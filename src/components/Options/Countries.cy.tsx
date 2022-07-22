@@ -15,7 +15,7 @@ describe("Countries", () => {
     cy.findByRole("button").contains("" + value);
   });
 
-  it("Given that the main button is clicked, when a value is selected, then the onSelect function should be called with the selected value", () => {
+  it("Given that the main button is clicked, when a country is selected, then the onSelect function should be called with the selected value", () => {
     // given
     const value = "" + getName("US");
     const targetValue = "" + getName("CH");
@@ -29,5 +29,19 @@ describe("Countries", () => {
 
     // then
     cy.get("@onSelectSpy").should("have.been.calledWith", targetValue);
+  });
+  
+  it("Given that a country is selected, when the reset item is selected, then the onSelect function should be called with an empty string", () => {
+    // given
+    const value = "" + getName("US");
+    const onSelectSpy = cy.spy().as("onSelectSpy");
+    mount(<Countries onSelect={onSelectSpy} value={value} />);
+    cy.findByRole("button").click();
+
+    // when
+    cy.findByRole("menuitem", {name: "-"}).click();
+
+    // then
+    cy.get("@onSelectSpy").should("have.been.calledWith", "");
   });
 });

@@ -10,9 +10,9 @@ type Props = {
   value: string;
 };
 export const countryNames = getNames();
-const items: Country[] = countryNames.map((name) => ({ name }));
+const items: Country[] = ["", ...countryNames].map((name) => ({ name }));
 const Item: React.FC<Country> = ({ name }, { handleClick }) => {
-  return <MenuItem title={name} text={name} key={name} onClick={handleClick} />;
+  return <MenuItem title={name} text={name || "-"} key={name} onClick={handleClick} />;
 };
 
 const itemFilter = (query: string, { name }: Country) => {
