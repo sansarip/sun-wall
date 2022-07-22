@@ -1,6 +1,7 @@
 # Sun Wall
 
-This is a demo project with a generated name 🌞
+This is a demo project with a generated name 🌞\
+It simply fetches the most viewed wikipedia pages for a specified date.
 
 The app is live here 👉 [https://sun-wall.vercel.app/](https://sun-wall.vercel.app/)
 
