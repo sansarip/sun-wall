@@ -4,7 +4,7 @@ import { useState } from "react";
 import Countries from "./Countries";
 
 export default {
-  title: "Components/Filters/Countries",
+  title: "Components/Options/Countries",
   component: Countries,
   parameters: {
     layout: "fullscreen",

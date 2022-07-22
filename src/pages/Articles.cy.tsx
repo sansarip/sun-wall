@@ -3,7 +3,7 @@ import { selectDate } from "../../cypress/support/calendar";
 import { format } from "date-fns";
 import { dateToYearMonthDay, getYesterday, padWithZero } from "src/utils";
 import Articles from "./Articles";
-import { selectableNumbers } from "src/components/NumResultsSelect";
+import { selectableNumbers } from "src/components/Options";
 import { RouteHandler } from "cypress/types/net-stubbing";
 
 const expectUrlToContainDate = (

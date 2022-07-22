@@ -2,7 +2,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Calendar from './Calendar';
 
 export default {
-  title: 'Components/Filters/Calendar',
+  title: 'Components/Options/Calendar',
   component: Calendar,
   parameters: {
     layout: 'fullscreen',

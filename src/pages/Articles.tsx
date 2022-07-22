@@ -1,16 +1,13 @@
 import { Colors, NonIdealState, Spinner } from "@blueprintjs/core";
 import { useMachine } from "@xstate/react";
 import machine from "./Articles.fsm";
-import {
-  Articles as _Articles,    
-  Filters,
-  NumResultsSelect,
-} from "src/components";
+import { Options } from "src/components";
+import { Preview } from "src/components/Articles";
 import styled from "styled-components";
 import { FixedSizeList } from "react-window";
 import AutoSizer from "react-virtualized-auto-sizer";
 import { useState } from "react";
-import { SelectableNumber } from "src/components/NumResultsSelect";
+import { SelectableNumber } from "src/components/Options";
 
 const Main = styled.main`
   align-items: center;
@@ -20,7 +17,7 @@ const Main = styled.main`
   overflow-y: hidden;
 `;
 
-const Options = styled.div`
+const OptionsContainer = styled.div`
   align-items: center;
   display: flex;
   gap: 1rem;
@@ -75,10 +72,7 @@ export const Articles: React.FC = () => {
           >
             {({ index, style }) => (
               <Item style={style}>
-                <_Articles.Preview
-                  key={articles[index]?.article}
-                  {...articles[index]}
-                />
+                <Preview key={articles[index]?.article} {...articles[index]} />
               </Item>
             )}
           </List>
@@ -89,14 +83,14 @@ export const Articles: React.FC = () => {
 
   return (
     <Main>
-      <Options>
-        <Filters.Calendar disabled={isLoading} onApply={applyDate} />
-        <NumResultsSelect
+      <OptionsContainer>
+        <Options.Calendar disabled={isLoading} onApply={applyDate} />
+        <Options.NumResults
           disabled={isLoading}
           onSelect={(number: SelectableNumber) => setNumArticles(number)}
           value={numArticles}
         />
-      </Options>
+      </OptionsContainer>
       <Content>{content}</Content>
     </Main>
   );

@@ -2,7 +2,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Base from './Base';
 
 export default {
-  title: 'Components/Filters/Base',
+  title: 'Components/Options/Base',
   component: Base,
   parameters: {
     layout: 'fullscreen',

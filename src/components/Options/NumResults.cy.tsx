@@ -1,14 +1,14 @@
 import { mount } from "cypress/react";
-import NumResultsSelect from "./NumResultsSelect";
+import NumResults from "./NumResults";
 import { noop } from "lodash";
 
-describe("NumResultsSelect", () => {
+describe("NumResults", () => {
   it("The given value is displayed", () => {
     // given
     const value = 100;
 
     // when
-    mount(<NumResultsSelect onSelect={noop} value={100} />);
+    mount(<NumResults onSelect={noop} value={value} />);
 
     // then
     cy.findByRole("button").contains("" + value);
@@ -19,7 +19,7 @@ describe("NumResultsSelect", () => {
     const value = 100;
     const targetValue = 200;
     const onSelectSpy = cy.spy().as("onSelectSpy");
-    mount(<NumResultsSelect onSelect={onSelectSpy} value={value} />);
+    mount(<NumResults onSelect={onSelectSpy} value={value} />);
     cy.findByRole("button").click();
 
     // when

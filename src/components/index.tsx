@@ -1,4 +1,3 @@
 export * as Articles from "./Articles";
-export * as Filters from "./Filters";
+export * as Options from "./Options";
 export * from "./Header";
-export * from "./NumResultsSelect";

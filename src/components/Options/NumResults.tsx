@@ -16,7 +16,7 @@ const Item: React.FC<Option> = ({ number }, { handleClick }) => {
   return <MenuItem text={number} key={number} onClick={handleClick} />;
 };
 
-export const NumResultsSelect: React.FC<Props> = ({ disabled, onSelect, value }) => {
+export const NumResults: React.FC<Props> = ({ disabled, onSelect, value }) => {
   return (
     <Select
       disabled={disabled}
@@ -35,4 +35,4 @@ export const NumResultsSelect: React.FC<Props> = ({ disabled, onSelect, value })
   );
 };
 
-export default NumResultsSelect;
+export default NumResults;
