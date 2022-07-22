@@ -21,13 +21,12 @@ const fetchArticles: FetchArticles =
   async () => {
     const [year, month, day] =
       yearMonthDay || dateToYearMonthDay(getYesterday());
+    const dateParams = [year, padWithZero(month + 1), padWithZero(day)].join("/");
     const apiUrl = countryName
       ? `https://wikimedia.org/api/rest_v1/metrics/pageviews/top-per-country/${getCode(
           countryName
-        )}/all-access/${year}/${padWithZero(month)}/${padWithZero(day)}`
-      : `https://wikimedia.org/api/rest_v1/metrics/pageviews/top/en.wikipedia/all-access/${year}/${padWithZero(
-          month + 1
-        )}/${padWithZero(day)}`;
+        )}/all-access/${dateParams}`
+      : `https://wikimedia.org/api/rest_v1/metrics/pageviews/top/en.wikipedia/all-access/${dateParams}`;
     const response = await fetch(apiUrl);
     if (!response.ok && response.status !== 404) {
       throw new Error(response.statusText);
