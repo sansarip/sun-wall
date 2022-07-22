@@ -8,7 +8,6 @@ import { FixedSizeList } from "react-window";
 import AutoSizer from "react-virtualized-auto-sizer";
 import { useState } from "react";
 import { SelectableNumber } from "src/components/Options";
-import { getCode } from "country-list";
 
 const Main = styled.main`
   align-items: center;
