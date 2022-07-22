@@ -42,7 +42,6 @@ export const Calendar: React.FC<CalendarProps> = ({
         minDate={earliestWikipediaArticleDate}
         maxDate={maxDate}
         onChange={setDate}
-        shortcuts
       />
     </Base>
   );
